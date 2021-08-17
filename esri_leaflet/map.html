@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Map</title>
+    <!--leaflet library-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!--<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>-->
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.1/dist/esri-leaflet.js" integrity="sha512-JmpptMCcCg+Rd6x0Dbg6w+mmyzs1M7chHCd9W8HPovnImG2nLAQWn3yltwxXRM7WjKKFFHOAKjjF2SC4CgiFBg==" crossorigin=""></script>
+    <!--<script src="https://unpkg.com/esri-leaflet-vector@3.0.0/dist/esri-leaflet-vector.js"></script>-->
+    <!--Marker Cluster-->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.Default.css" integrity="sha512-6ZCLMiYwTeli2rVh3XAPxy3YoR5fVxGdH/pz+KMCzRY2M65Emgkw00Yqmhh8qLGeYQ3LbVZGdmOX9KUjSKr0TA==" crossorigin="">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.css" integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg==" crossorigin="">
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js" integrity="sha512-pWPELjRaw2ZdoT0PDi7iRpRlk1XX3rtnfejJ/HwskyojpHei+9hKpwdphC4yssNt4FM0TjMQOmMrk6ZYSn274w==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@2.1.0/dist/esri-leaflet-cluster.js" integrity="sha512-fEdNFHisleVtEYdLhW4Z2RsR7TN6hLutE/+O4D+skfTNY2rlHm8HOZARPWkdrFFy/+i2KjFxcZAKTUWaVfbV0g==" crossorigin=""></script>
+    <!-- After Leaflet and Leaflet.markercluster scripts -->
+    <!--<script src="./leaflet.markercluster.layersupport.js"></script>-->
+    <!--css style sheet-->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="../map_navbar.css">
+    <script src="../nav.js"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!--font awsome icon-->
+    <script src="https://kit.fontawesome.com/546c676165.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="sidebar_right">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../index.html">Home</a>
+            <a href="../about/index.html">About</a>
+            <a class="active" href="../esri_leaflet/map.html">Map</a>
+            <a href="../survey/survey.html">Share</a>
+            <a href="../data_portal/index.html">Data Portal</a>
+            <a href="../login/index.html" style="padding-right: 20px;">Login</a>
+
+        </div>
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">&#9776;</button>
+        </div>
+    </div>
+    <div id="sidebar" class="sidebar">
+        <div id="Yellowknife" class="municipality hide">
+            <button onclick="hideId('Yellowknife')" class="close_button">&times;</button>
+            <h2 style="color: dodgerblue;">Municipality: </h2>
+            <h1>Yellowknife</h1>
+        </div>
+        <div id="Whitehorse" class="municipality hide">
+            <button onclick="hideId('Whitehorse')" class="close_button">&times;</button>
+            <h2 style="color: dodgerblue;">Municipality: </h2>
+            <h1>Whitehorse</h1>
+        </div>
+    </div>
+
+    <div id="mapid"></div>
+    <div id="info-pane" class="leaflet-bar">Hover to inspect</div>
+    <div id="utilities" class="utilities">
+        <div class="legends">
+            <button onclick="myFunction('legends')" id="openbtn" class="dropbtn hide">&#8811 Legends</button>
+            <button onclick="myFunction('legends')" id="closebtn" class="dropbtn">&#8810 Legends</button>
+            <div id="legends" class="legends-content">
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:blue;stroke-width:2"/>
+                </svg><span class="label"> Winter Road</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:red;stroke-width:2"/>
+                </svg><span class="label"> Asphalt</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:black;stroke-width:2"/>
+                </svg><span class="label"> Gravel</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:green;stroke-width:2"/>
+                </svg><span class="label"> Local</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:yellow;stroke-width:2"/>
+                </svg><span class="label"> Chipseal</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:white;stroke-width:2"/>
+                </svg><span class="label"> Secondary</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:gray;stroke-width:2"/>
+                </svg><span class="label"> Inactive</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:lightgreen;stroke-width:2"/>
+                </svg><span class="label"> Proposed road</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:navy;stroke-width:2"/>
+                </svg><span class="label"> Rail</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:aqua;stroke-width:2"/>
+                </svg><span class="label"> Ferry</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:skyblue;stroke-width:2"/>
+                </svg><span class="label"> Water</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:brown;stroke-width:2"/>
+                </svg><span class="label"> First Nation Heritage Routes</span><br>
+                <svg height="15" width="35">
+                    <line x1="25" y1="9" x2="35" y2="9" style="stroke:darkgreen;stroke-width:2"/>
+                </svg><span class="label"> Wilderness Tourism Trails</span><br>
+                <div id="airportLegend" class="hide">
+                    <img src="./airport_icon.png" alt="" class="imgLabel"><span class="label"> Unpaved</span><br>
+                    <img src="./airport_icon2.png" alt="" class="imgLabel"><span class="label"> Paved</span><br>
+                </div>
+                <div id="medLegend" class="hide"><img src="./hospital.png" alt="" class="imgLabel"><span class="label"> Health Centers</span><br></div>
+                <div id="portLegend" class="hide"><img src="./anchor.png" alt="" class="imgLabel"><span class="label"> Port Communities</span><br></div>
+                <!--<div id="waterLegend" class="">
+                    <svg height="15" width="38">
+                        <polygon points="25,1 25,14 38,14 38,1" style="fill:skyblue" />
+                    </svg><span class="label"> Water</span><br>
+                </div>-->
+                <!--<div id="YPRLegend" class="hide">
+                    <svg height="15" width="38">
+                        <polygon points="25,1 25,14 38,14 38,1" style="fill:aquamarine" />
+                    </svg><span class="label"> Yukon Planning Region</span><br>
+                </div>-->
+                <div id="PPALegend" class="hide">
+                    <svg height="15" width="38">
+                        <polygon points="25,1 25,14 38,14 38,1" style="fill:lawngreen" />
+                    </svg><span class="label"> Park and Protected Areas</span><br>
+                </div>
+                <div id="FNSLLegend" class="hide">
+                    <svg height="15" width="38">
+                        <polygon points="25,1 25,14 38,14 38,1" style="fill:darkred" />
+                    </svg><span class="label"> First Nations Settlement Lands</span><br>
+                </div>
+                <div id="ABLegend" class="hide">
+                    <svg height="15" width="38">
+                        <polygon points="25,1 25,14 38,14 38,1" style="fill:coral" />
+                    </svg><span class="label"> Aboriginal Boundaries</span><br>
+                </div>
+                <!--<img src="./gasoline.png" alt="" class="imgLabel"><span class="label"> Gasoline</span><br>
+                <img src="./accommodation.png" alt="" class="imgLabel"><span class="label"> Accommodation</span><br>
+                <img src="./restaurant.png" alt="" class="imgLabel"><span class="label"> Restaurant</span><br>
+                <img src="./medical_services.png" alt="" class="imgLabel"><span class="label"> Medical Services</span><br>
+                <img src="./police.png" alt="" class="imgLabel"><span class="label"> Police</span><br>-->
+            </div>
+        </div>
+        <div class="dropdown">
+            <button onclick="myFunction('myDropdown')" class="dropbtn"><i class="fas">&#xf5fd;</i> Settings</button>
+            <div id="myDropdown" class="dropdown-content hide">
+                <div id="surface" class="surface">
+                    <button onclick="toSub('basemap')" class="surface_button transition">Base Map</button>
+                    <!--<button onclick="toSub('ice')" class="surface_button transition">Winter Road</button>-->
+                    <button onclick="toSub('road')" class="surface_button transition">Road Ways</button>
+                    <!--<button onclick="toSub('rail')" class="surface_button transition">Track Segment / Rail</button>-->
+                    <button onclick="toSub('other_trail')" class="surface_button transition">Other Paths</button>
+                    <button onclick="toSub('data')" class="surface_button transition">Real Time Data</button>
+                    <button onclick="toSub('airport')" class="surface_button transition">Airport</button>
+                    <button onclick="toSub('healthcare')" class="surface_button">Medical Services</button>
+                    <button onclick="toSub('communities')" class="surface_button">Port Communities</button>
+                    <button onclick="toSub('poi')" class="surface_button">Point of Interest</button>
+                    <!--<button onclick="toSub('waterbodies')" class="surface_button">Waterbodies</button>-->
+                    <button onclick="toSub('boundaries')" class="surface_button">Boundaries</button>
+                </div>
+                <div id="basemap" class="transition hide">
+                    <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                    <select class="detailSheets">
+                        <option value="Streets" selected="selected">Streets</option>
+                        <option value="Topographic">Topographic</option>
+                        <option value="NationalGeographic">National Geographic</option>
+                        <option value="Imagery">Imagery</option>
+                    </select>
+                </div>
+                <div id="layers">
+                    <div id="road" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="iceYukon" value="iceYukon">
+                        <label for="iceYukon">Ice Crossing (Yukon Territory)</label><br>
+                        <input type="checkbox" name="marker" id="roadYukon" value="roadYukon">
+                        <label for="roadYukon">Roadways (Yukon Territory)</label><br>
+                        <input type="checkbox" name="marker" id="roadNWT" value="roadNWT">
+                        <label for="roadNWT">Roadways (Northwest Territory)</label><br>
+                        <input type="checkbox" name="marker" id="ferry" value="ferry">
+                        <label for="ferry">Ferry (Northwest Territory)</label><br>
+                        <input type="checkbox" name="marker" id="propRoadNWT" value="propRoadNWT">
+                        <label for="propRoadNWT">Proposed Roads (Northwest Territory)</label><br>
+                        <input type="checkbox" name="marker" id="roadNU" value="roadNU">
+                        <label for="roadNU">Roadways (Nunavut)</label><br>
+
+                    </div>
+                    <div id="other_trail" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="railYukon" value="railYukon">
+                        <label for="railYukon">Track Segments (Yukon Territory)</label><br>
+                        <input type="checkbox" name="marker" id="railNWT" value="railNWT">
+                        <label for="railNWT">Railway (Northwest Territory)</label><br>
+                        <input type="checkbox" name="marker" id="water" value="water">
+                        <label for="water">Water 2M</label><br>
+                        <input type="checkbox" name="marker" id="FNHR" value="FNHR">
+                        <label for="FNHR">First Nation Heritage Routes</label><br>
+                        <input type="checkbox" name="marker" id="WTT" value="WTT">
+                        <label for="WTT">Wilderness Tourism Trails</label><br>
+                    </div>
+                    <div id="data" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="real_time_data" value="real_time_data">
+                        <label for="real_time_data">Real Time Data</label><br>
+                    </div>
+                    <div id="airport" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="airportYukon" value="airportYukon">
+                        <label for="airportYukon">Airports (Yukon Territory)</label><br>
+                        <input type="checkbox" name="marker" id="airportNU" value="airportNU">
+                        <label for="airportNU">Airports (Northwest Territory)</label><br>
+                        <input type="checkbox" name="marker" id="airportNWT" value="airportNWT">
+                        <label for="airportNWT">Airports (Nunavut)</label><br>
+                    </div>
+                    <div id="healthcare" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="healthcareNU" value="healthcareNU">
+                        <label for="healthcareNU">Medical Services (Nunavut)</label><br>
+                    </div>
+                    <div id="communities" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="portCommNWT" value="portCommNWT">
+                        <label for="portCommNWT">Port Communities (Northwest Territory)</label><br>
+                    </div>
+                    <div id="poi" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="poiA" value="poiA">
+                        <label for="poiA">Point of Interest (All Northern provinces)</label><br>
+                    </div>
+                    <!--<div id="waterbodies" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <input type="checkbox" name="marker" id="waterbodiesYukon" value="waterbodiesYukon">
+                        <label for="waterbodiesYukon">Waterbodies (Yukon Territory)</label><br>
+                        <input type="checkbox" name="marker" id="waterbodiesNU" value="waterbodiesNU">
+                        <label for="waterbodiesNU">Waterbodies (Nunavut)</label><br>
+                        <input type="checkbox" name="marker" id="waterbodiesNWT" value="waterbodiesNWT">
+                        <label for="waterbodiesNWT">Inland Water (Northwest Territory)</label><br>
+                    </div>-->
+                    <div id="boundaries" class="transition hide">
+                        <button onclick="surfaceToggle()" class="detailSheets" style="text-align: left;">&#8592;</button>
+                        <!--<input type="checkbox" name="marker" id="YPR" value="YPR">
+                        <label for="YPR">Yukon Planning Region 250k</label><br>-->
+                        <input type="checkbox" name="marker" id="PPA" value="PPA">
+                        <label for="PPA">Park and Protected Areas 1M</label><br>
+                        <input type="checkbox" name="marker" id="FNSL" value="FNSL">
+                        <label for="FNSL">First Nations Settlement Lands 1M</label><br>
+                        <input type="checkbox" name="marker" id="AB" value="AB">
+                        <label for="AB">Aboriginal Boundaries</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./setting.js"></script>
+    <script src="./data.js"></script>
+    <script src="./map.js"></script>
+    <script src="./initMap.js"></script>
+</body>
+
+</html>

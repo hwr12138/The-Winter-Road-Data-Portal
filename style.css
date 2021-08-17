@@ -1,0 +1,144 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+#topic {
+    height: 100vh;
+    background-image: url(./prairie2.JPG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.block1 {
+    width: 40%;
+    color: white;
+    padding: 30vh 0 0 10vh;
+}
+
+.block1 h1 {
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.block1 a {
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    text-decoration: none;
+    background-color: orange;
+    border: 4px;
+    border-radius: 5px;
+    padding: 5px 20px;
+    float: right;
+}
+
+.block1 a:hover {
+    color: rgb(82, 161, 92);
+}
+
+.block2 {
+    width: 100vw;
+}
+
+.block3 {
+    width: 100vw;
+    height: 600px;
+}
+
+.features {
+    padding: 50px 70px;
+    text-align: center;
+}
+
+.learn_more {
+    text-decoration: none;
+    color: purple;
+    border: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.learn_more:hover {
+    background-color: purple;
+    color: white;
+}
+
+.featuresPic {
+    background-image: url(./globe1.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.maps {
+    background-color: rgb(224, 224, 224);
+    height: 800px;
+}
+
+.maps_container {
+    margin: 0 50% 0 10%;
+    padding: 5% 0;
+}
+
+.survey {
+    background-color: white;
+    height: 800px;
+}
+
+.survey_container {
+    margin: 0 50% 0 10%;
+    padding: 5% 0;
+}
+
+footer {
+    width: 100vw;
+    height: 900px;
+    background-color: gray;
+}
+
+.feedback {
+    text-align: center;
+    height: 300px;
+}
+
+.feedback_cont {
+    padding: 4% 0;
+}
+
+.organizations {
+    text-align: center;
+    color: aliceblue;
+    height: 600px;
+    background-image: url(./rain1.jpeg);
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 1000px) {
+    #topic {
+        height: auto;
+        width: 100%;
+        background-attachment: local;
+    }
+    .block1 {
+        width: 90%;
+        padding: 100px 5%;
+    }
+    .featuresPic {
+        background-attachment: local;
+    }
+}

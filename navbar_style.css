@@ -1,0 +1,126 @@
+#navbar {
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 20px 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+#navbar a {
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+#navbar #logo {
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+#navbar a:hover {
+    color: gray;
+}
+
+#navbar a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.closebtn {
+    display: none;
+}
+
+#sidebar_right {
+    display: block;
+    float: right;
+    text-align: center;
+}
+
+#main {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    #navbar #logo {
+        display: none;
+    }
+    #navbar {
+        background-color: inherit;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+    #navbar a {
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 25px;
+        border-radius: 5px;
+    }
+    #navbar a:hover {
+        color: gray;
+    }
+    #navbar a.active {
+        background-color: dodgerblue;
+        color: white;
+    }
+    .closebtn {
+        display: none;
+    }
+    #sidebar_right {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+    }
+    #sidebar_right a {
+        padding: 8px 20px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        text-align: center;
+        transition: 0.3s;
+    }
+    #sidebar_right a:hover {
+        color: #f1f1f1;
+    }
+    #sidebar_right .closebtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    .openbtn {
+        font-size: 35px;
+        cursor: pointer;
+        color: black;
+        border: none;
+    }
+    .openbtn:hover {
+        color: gray;
+    }
+    #main {
+        display: block;
+        float: right;
+        text-align: center;
+        transition: margin-left .5s;
+    }
+    #main button {
+        background-color: inherit;
+    }
+}

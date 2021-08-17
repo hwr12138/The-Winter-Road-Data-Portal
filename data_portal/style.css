@@ -1,0 +1,38 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+#navbar_spacing {
+    height: 80px;
+}
+
+.detailSheets {
+    background-color: inherit;
+}
+
+.hide {
+    display: none;
+}
+
+table {
+    border: 1;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th {
+    background-color: rgb(165, 165, 165);
+    font-weight: bold;
+    padding: 0 3px;
+}
+
+td {
+    text-align: center;
+    padding: 0 3px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta property="og:title" content="the winter road data portal" />
+    <meta property="og:description" content="data portal" />
+    <meta property="og:url" content="https://www." />
+    <title>Homepage</title>
+    <!--style sheet-->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./navbar_style.css">
+    <script src="./nav.js"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="navbar">
+        <a href="#default" id="logo">Winter Road Data Portal</a>
+        <div id="sidebar_right">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a class="active" href="./index.html">Home</a>
+            <a href="./about/index.html">About</a>
+            <a href="./esri_leaflet/map.html">Map</a>
+            <a href="./survey/survey.html">Share</a>
+            <a href="./data_portal/index.html">Data Portal</a>
+            <a href="./login/index.html" style="padding-right: 20px;">Login</a>
+        </div>
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">&#9776;</button>
+        </div>
+    </div>
+    <div id="topic">
+        <div class="block1" id="hide">
+            <h1>Welcome to The Winter Road Data Portal</h1>
+            <h2><em>The Winter Road Data Portal</em> provides you with climate data, road conditions, and facility locations to help you understand Northern Canada</h2>
+            <a href="#maps" class="start_browsing">Start Browsing <span style="font-size: large;">&#8964</span></a>
+        </div>
+    </div>
+    <div id="homepage">
+        <div class="block2">
+            <div class="features">
+                <div class="features_container">
+                    <h1>Features</h1>
+                    <h4>The Winter Road Data Portal is a climate data portal produced by Canada's leading climate research teams. The goal of this portal is to provide high resolution data across a broad spectrum of sectors and locations. </h4>
+                    <a href="./about/index.html" class="learn_more">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="block3">
+            <div class="featuresPic"></div>
+        </div>
+        <div class="block2">
+            <div class="maps" id="maps">
+                <div class="maps_container">
+                    <h1>Real Time Data Portal</h1>
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+        <div class="block2">
+            <div class="survey">
+                <div class="survey_container">
+                    <h1>Take Action by Participating in Our Data Collection</h1>
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="feedback">
+            <div class="feedback_cont">
+                <h1>Need help? Have any feedbacks?</h1>
+                <h4>If you have any comments, feedbacks, or need support, please feel free to contact us! </h4>
+
+            </div>
+
+        </div>
+        <div class="organizations">
+            <h1>Participating Organizations Logos</h1>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+#navbar {
+    overflow: hidden;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
+
+#navbar a {
+    margin: 0 auto;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+#navbar a:hover {
+    color: gray;
+}
+
+#navbar a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.closebtn {
+    display: none;
+}
+
+#sidebar_right {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+@media screen and (min-width: 1000px) {
+    #sidebar_right {
+        max-width: 400px;
+    }
+}
+
+#sidebar_right a {
+    padding: 8px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    text-align: center;
+    transition: 0.3s;
+}
+
+#sidebar_right a:hover {
+    color: #f1f1f1;
+}
+
+#sidebar_right .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 35px;
+    cursor: pointer;
+    color: black;
+    border: none;
+}
+
+.openbtn:hover {
+    color: gray;
+}
+
+#main {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: margin-left .5s;
+    z-index: 80;
+    /* If you want a transition effect */
+}
+
+#main button {
+    background-color: inherit;
+    margin: 10px 10px 0 0;
+}
